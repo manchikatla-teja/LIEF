@@ -1,0 +1,62 @@
+.signup{
+    width: 30%;
+    height: max-content;
+    background-color: white;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 1rem;
+    box-shadow: inset 0 0 1rem 0.5rem turquoise;
+}
+.header{
+    
+    font-size: 2rem;
+    font-weight: 600;
+    width: 90%;
+    text-align: center;
+    border-bottom: 0.2rem solid black; 
+}
+.signupForm{
+    width: 100%;
+}
+
+.forminput{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.forminput > input{
+    width: 80%;
+    height: 2rem;
+    border-radius: 1.2rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 200;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.FormButton{
+    width: max-content;
+    padding: 0.2rem 1rem;
+    height: 2rem;
+    background-color: aqua;
+    border-radius: 0.6rem;
+    border: 0.1rem solid blue;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.FormButton:hover{
+    cursor: pointer;
+    border-color:darkblue;
+    transform: scale(1.1);
+}
