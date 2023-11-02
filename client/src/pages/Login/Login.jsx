@@ -13,10 +13,10 @@ const Login = () => {
         e.preventDefault();
         axios.post("http://localhost:4000/login", {email, password})
         .then(result=>{
-            console.log(result.data);
+            localStorage.setItem('userID', result.data);
             setEmail("");
             setPassword("");
-            if(result.data==="success"){
+            if(result.data!=="Invalid password" && result.data!=="No such record exists"){
                 navigate('/home');
             }
         })
