@@ -49,6 +49,23 @@ app.get('/injuryPost', async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   });
+
+
+app.delete('/deletePatient/:_id', async (req, res) => {
+    //id of the item to be deleted is passed as param /:_id
+    // console.log(req.params);
+    // console.log(req.body);
+
+    
+    const filter = { _id: req.params._id }; // Filter condition Ex: {nameOfTheReporter: req.params.name or whatever}
+    // console.log(filter);
+    try {
+      const deletedItems = await injuredModel.deleteOne(filter); 
+      res.json(deletedItems);
+    } catch (error) {
+      res.status(500).json({ error: 'Server error' });
+    }
+});
   
 
 app.listen(4000, ()=>{

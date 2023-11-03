@@ -1,32 +1,35 @@
 import { useState } from "react";
-import "./Home.css"
+import "../Home/Home.css"
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {React} from 'react';
 
 
 
 
-let count = 1;
-let injuredAreas = [];
-let injuriesSaved = [];
+
+
 const rows  = 27;
 const columns = 13;
 let arrayFront = Array(rows*columns).fill(0);
 let arrayBack = Array(rows*columns).fill(0);
 
-const Home = () => {
-
-    // const state = useLocation();
-    // const data = state.state ? state.state : "";
+const UpdatePatient = () => {
     
+    const state = useLocation();
+    const data = state.state ? state.state.patient : "";
+    //console.log(data);
     const navigate = useNavigate();
-    const [nameOfTheReporter, setNameOfTheReporter] = useState("");
-    const [dateOfInjury, setDateOfInjury] = useState("");
-    const [dateOfReport, setDateOfReport] = useState("");
-    const [timeOfInjury, setTimeOfInjury] = useState("");
+    const [nameOfTheReporter, setNameOfTheReporter] = useState(data.nameOfTheReporter);
+    const [dateOfInjury, setDateOfInjury] = useState(data.dateOfInjury);
+    const [dateOfReport, setDateOfReport] = useState(data.dateOfReport);
+    const [timeOfInjury, setTimeOfInjury] = useState(data.timeOfInjury);
     const [currentlySelectedInjury, setCurrentlySelectedInjury] = useState(0);
-
+    const [count, setCount] = useState(data.injuriesSaved.length);
+    const [injuredAreas, setInjuredAreas] = useState(data.injuredAreas);
+    const [injuriesSaved, setInjuriesSaved] = useState(data.injuriesSaved);
+    const [typeOfInjury, setTypeOfInjury] = useState("");
+    const [severityOfInjury, setSeverityOfInjury] = useState("");
     //console.log(data, currentlySelectedInjury);
 
     const handleSubmit = async (e)=>{
@@ -35,15 +38,29 @@ const Home = () => {
         .then(result=>{
             //console.log(result);
             //setCurrentlySelectedInjury(0);
-            injuredAreas = [];
-            injuriesSaved = [];
-            count=1;
-            navigate("/mainpage");
+            setInjuredAreas([]);
+            setInjuriesSaved([]);
+            setCount(1);
         })
         .catch(err=>console.log(err))
+
+        try{
+            await axios.delete(`http://localhost:4000/deletePatient/${data._id}`) //pass data to delete as params
+                                                                             //passing as body was not working
+            .then(result=>{
+                //console.log(result);
+                //setData(data.filter((patient)=> patient._id!==_id)); //instead of rendering whole page we are taking out
+                                                                     // the deleted datas
+                
+                navigate("/mainpage");
+            });
+        }
+        catch(error){
+            console.error('Couldn\'t delete!', error);
+        }
     }
 
-    const handleClickToNoteInjuries = (index)=>{
+    const handleClickToNoteInjuries = async (index)=>{
         
         if(injuredAreas.includes(index)){
             var selected = document.getElementById(index).innerHTML;
@@ -56,10 +73,10 @@ const Home = () => {
             return;
         }
         document.getElementById(index).style.backgroundColor = "rgba(252, 34, 34)";
-        document.getElementById(index).innerHTML = count;
+        document.getElementById(index).innerHTML = count+1;
         setCurrentlySelectedInjury(document.getElementById(index).innerHTML);
-        injuredAreas = [...injuredAreas, index];
-        count=count+1;
+        await setInjuredAreas([...injuredAreas, index]);
+        setCount(count+1);
         //console.log("injuredHere", injuredAreas);
     }
 
@@ -69,21 +86,31 @@ const Home = () => {
         var element = injuriesSaved.find((injury)=>injury.injuredAreaNumber===currentlySelectedInjury);
 
         if(element===undefined){//the injury is not saved
-            injuriesSaved = [...injuriesSaved, {
-                injuredAreaNumber: currentlySelectedInjury,
+            setInjuriesSaved([...injuriesSaved, {
+                injuredAreaNumber: currentlySelectedInjury+1,
                 typeOfInjury: document.getElementById("typeOfInjury").value,
                 severityOfInjury: document.getElementById("severityOfInjury").value,
-            }];
+            }]);
         }
         else{//this is to update the injury
-            injuriesSaved[injuriesSaved.indexOf(element)] =  {
-                injuredAreaNumber: currentlySelectedInjury,
+            let temp = injuriesSaved;
+            temp[injuriesSaved.indexOf(element)] =  {
+                injuredAreaNumber: currentlySelectedInjury+1,
                 typeOfInjury: document.getElementById("typeOfInjury").value,
                 severityOfInjury: document.getElementById("severityOfInjury").value,
             };
+            setInjuriesSaved(temp);
         }
 
     }
+
+    const handleClickToDetailsOfInjury= (indexOfTheInjury)=>{
+        var i = data.injuredAreas.indexOf(indexOfTheInjury);
+        setCurrentlySelectedInjury(i+1);
+        setTypeOfInjury(data.injuriesSaved[i].typeOfInjury);
+        setSeverityOfInjury(data.injuriesSaved[i].severityOfInjury);
+    }
+
 
         return ( 
             <div className="Home">
@@ -112,6 +139,9 @@ const Home = () => {
     
                         <div className="body" id="bodyFront">
                             {arrayFront.map((val, index)=>{
+                                if(data.injuredAreas.includes(index)){
+                                    return <div className="gridcell" id={index} onClick={()=>handleClickToDetailsOfInjury(index)} key={index} style={{backgroundColor: "red"}}>{data.injuredAreas.indexOf(index)+1}</div>
+                                }
                             return <div className="gridcell" id={index} onClick={()=>handleClickToNoteInjuries(index)} key={index}></div>
                             })}
                         </div>
@@ -119,6 +149,9 @@ const Home = () => {
                         <div className="body" id="bodyBack">
                             {arrayBack.map((val, index)=>{
                                 let temp = (27*13)+index;
+                                if(data.injuredAreas.includes(temp)){
+                                    return <div className="gridcell" id={temp} onClick={()=>handleClickToDetailsOfInjury(temp)} key= {index} style={{backgroundColor: "red"}}>{data.injuredAreas.indexOf(temp)+1}</div>
+                                }
                                 return <div className="gridcell" id={temp} onClick={()=>handleClickToNoteInjuries(temp)} key= {index}></div>
                             })}
                         </div>
@@ -127,19 +160,26 @@ const Home = () => {
                 
                 </div>
                 <div className="infoAboutInjury">
-                    <span>Injury number {currentlySelectedInjury}</span><br/>
+                    <span>Injury number {parseInt(currentlySelectedInjury)}</span><br/>
                     <label>Type of Injury:</label>
                 <select id="typeOfInjury">
-                    <option value="infection">Infection</option>
-                    <option value="accident">Accident</option>
-                    <option value="other">Other</option>
+                    <option value="infection">infection</option>
+                    <option value="accident">accident</option>
+                    <option value="other">other</option>
                     </select><br/>
-    
+                
+                <div>
+                    {typeOfInjury}, {severityOfInjury}
+                </div>
+
+
                     <label>Severity of Injury:</label>
+
+                    
                 <select id="severityOfInjury">
-                    <option value="dangerous">Dangerous</option>
-                    <option value="moderate">Moderate</option>
-                    <option value="firstAid">First-Aid</option>
+                    <option value="dangerous">dangerous</option>
+                    <option value="moderate">moderate</option>
+                    <option value="firstAid">firstAid</option>
                     </select><br/>
                     <div onClick={()=>handleClickToSaveInjury()}>SAVE</div>
     
@@ -150,4 +190,4 @@ const Home = () => {
          );
 }
  
-export default Home;
+export default UpdatePatient;

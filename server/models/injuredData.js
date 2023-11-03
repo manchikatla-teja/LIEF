@@ -11,6 +11,7 @@ const injuredDataSchema = new mongoose.Schema({
     nameOfTheReporter: String,
     dateOfInjury: String,
     timeOfInjury: String,
+    dateOfReport: String,
     injuredAreas: [Number],
     injuriesSaved: [injuriesSaved],
 });

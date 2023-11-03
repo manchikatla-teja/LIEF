@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "../Home/Home.css"
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import {React} from 'react';
 import { useLocation } from "react-router";
 
@@ -14,8 +12,7 @@ let arrayBack = Array(rows*columns).fill(0);
 const ExistingPatient = () => {
     const state = useLocation();
     const patientData = state.state ? state.state.patient : "";
-    
-    const navigate = useNavigate();
+    //console.log(patientData);
     const [currentlySelectedInjury, setCurrentlySelectedInjury] = useState(0);
     const [typeOfInjury, setTypeOfInjury] = useState("");
     const [severityOfInjury, setSeverityOfInjury] = useState("");
@@ -42,6 +39,8 @@ const ExistingPatient = () => {
             <span>{patientData.dateOfInjury}</span><br/>
             <label>Time when the injury occured:  </label>
             <span>{patientData.timeOfInjury}</span><br/>
+            <label>Date when the injury is reported:  </label>
+            <span>{patientData.dateOfReport}</span><br/>
             </div>
             
             
@@ -58,7 +57,7 @@ const ExistingPatient = () => {
                     <div className="body" id="bodyFront">
                         {arrayFront.map((val, index)=>{
                             if(patientData.injuredAreas.includes(index)){
-                                return <div className="gridcell" id={index} onClick={()=>handleClickToDetailsOfInjury(index)} key={index} style={{backgroundColor: "red"}}>{patientData.injuredAreas.indexOf(index)}</div>
+                                return <div className="gridcell" id={index} onClick={()=>handleClickToDetailsOfInjury(index)} key={index} style={{backgroundColor: "red"}}>{patientData.injuredAreas.indexOf(index)+1}</div>
                             }
                         return <div className="gridcell" id={index} onClick={()=>{}} key={index}></div>
                         })}
@@ -68,7 +67,7 @@ const ExistingPatient = () => {
                         {arrayBack.map((val, index)=>{
                             let temp = (27*13)+index;
                             if(patientData.injuredAreas.includes(temp)){
-                                return <div className="gridcell" id={temp} onClick={()=>handleClickToDetailsOfInjury(temp)} key= {index} style={{backgroundColor: "red"}}>{patientData.injuredAreas.indexOf(temp)}</div>
+                                return <div className="gridcell" id={temp} onClick={()=>handleClickToDetailsOfInjury(temp)} key= {index} style={{backgroundColor: "red"}}>{patientData.injuredAreas.indexOf(temp)+1}</div>
                             }
                             return <div className="gridcell" id={temp} onClick={()=>{}} key= {index}></div>
                         })}
@@ -78,7 +77,7 @@ const ExistingPatient = () => {
             
             </div>
             <div className="infoAboutInjury">
-                <span>Injury number {currentlySelectedInjury}</span><br/>
+                <span>Injury number {currentlySelectedInjury+1}</span><br/>
                 <label>Type of Injury:</label>
             <span>{typeOfInjury}</span><br/>
 
