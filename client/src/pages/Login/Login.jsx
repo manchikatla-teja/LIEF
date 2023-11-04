@@ -17,7 +17,7 @@ const Login = () => {
             setEmail("");
             setPassword("");
             if(result.data!=="Invalid password" && result.data!=="No such record exists"){
-                navigate('/home');
+                navigate('/mainpage');
             }
         })
         .catch(err=>console.log(err))

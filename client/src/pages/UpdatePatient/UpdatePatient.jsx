@@ -5,10 +5,6 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {React} from 'react';
 
 
-
-
-
-
 const rows  = 27;
 const columns = 13;
 let arrayFront = Array(rows*columns).fill(0);
@@ -115,18 +111,22 @@ const UpdatePatient = () => {
         return ( 
             <div className="Home">
                 
-                <div className="NameDateTimeOfInjury">Details Of Injury<br/>
+                <div className="InjuryDetails"> <span>Details Of Injury</span>
+                <div className="detail">
                 <label>Name of the reporter:</label>
-                <input type="text" placeholder="Enter name..." id="nameOfTheReporter" onChange={(e)=>setNameOfTheReporter(e.target.value)}  value={nameOfTheReporter}></input><br/>
+                <input type="text" placeholder="Enter name..." id="nameOfTheReporter" onChange={(e)=>setNameOfTheReporter(e.target.value)}  value={nameOfTheReporter}></input><br/></div>
+                <div className="detail">
                 <label>Date when the injury occured:</label>
-                <input type="date" placeholder="" id="dateOfInjury" onChange={(e)=>setDateOfInjury(e.target.value)} value={dateOfInjury}></input><br/>
+                <input type="date" placeholder="" id="dateOfInjury" onChange={(e)=>setDateOfInjury(e.target.value)} value={dateOfInjury}></input><br/></div>
+                <div className="detail">
                 <label>Time when the injury occured:</label>
-                <input type="time" placeholder="" id="TimeofInjury" onChange={(e)=>setTimeOfInjury(e.target.value)} value={timeOfInjury}></input>
-                </div>
+                <input type="time" placeholder="" id="TimeofInjury" onChange={(e)=>setTimeOfInjury(e.target.value)} value={timeOfInjury}></input></div>
+                <div className="detail">
                 <label>Date when the injury is reported:</label>
-                <input type="date" placeholder="" id="dateOfReport" onChange={(e)=>setDateOfReport(e.target.value)} value={dateOfReport}></input><br/>
+                <input type="date" placeholder="" id="dateOfReport" onChange={(e)=>setDateOfReport(e.target.value)} value={dateOfReport}></input><br/></div>
+                </div>
                 
-                
+                <div className="InjuryNote">
                 <div className="bodies">
                     <span style={{alignSelf:"center", fontSize:"1rem", fontWeight:"500", marginBottom: "1rem"}}>Please select the area of injury:</span>
     
@@ -159,20 +159,24 @@ const UpdatePatient = () => {
                     </div>
                 
                 </div>
+
+                <div style={{display:"flex", flexDirection:"column"}}>
                 <div className="infoAboutInjury">
-                    <span>Injury number {parseInt(currentlySelectedInjury)}</span><br/>
+                    <span>Injury number {currentlySelectedInjury}</span>
+                    <div className="selectDetailsOfInjury">
                     <label>Type of Injury:</label>
                 <select id="typeOfInjury">
                     <option value="infection">infection</option>
                     <option value="accident">accident</option>
                     <option value="other">other</option>
                     </select><br/>
+                    </div>
                 
                 <div>
                     {typeOfInjury}, {severityOfInjury}
                 </div>
 
-
+                <div className="selectDetailsOfInjury">
                     <label>Severity of Injury:</label>
 
                     
@@ -181,11 +185,17 @@ const UpdatePatient = () => {
                     <option value="moderate">moderate</option>
                     <option value="firstAid">firstAid</option>
                     </select><br/>
-                    <div onClick={()=>handleClickToSaveInjury()}>SAVE</div>
+                    </div>
+
+                    <button className="saveInjuryButton" onClick={()=>handleClickToSaveInjury()}>SAVE</button>
     
                 </div>
             
-                <div style={{background:"red", width: "10rem"}} onClick={handleSubmit}>SuBMit</div>
+                <button className="submitButton" onClick={handleSubmit}>SUBMIT</button>
+
+                </div>
+
+                </div>
             </div>
          );
 }

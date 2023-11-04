@@ -1,6 +1,7 @@
 .Home{
     
-
+background-color: black;
+color: white;
 }
 
 .bodies{
@@ -12,13 +13,91 @@
 }
 
 .infoAboutInjury{
-    background-color: cyan;
+    background-color: rgb(2, 172, 172);
+    padding: 1rem;
     width: fit-content;
     height: fit-content;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.3rem 0.4rem 0.1rem rgb(1, 105, 105);
+}
+.infoAboutInjury>span{
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.selectDetailsOfInjury{
+    display: flex;
+    align-items: center;
+}
+.selectDetailsOfInjury>label{
+    margin: 0 1rem 0 0;
+}
+.selectDetailsOfInjury>select{
+    cursor: pointer;
+    height: 1.5rem;
+    background-color: black;
+    box-shadow: inset 0 0.15rem 0.4rem 0rem white;
+    width: 12rem;
+    color-scheme: dark;
+    color: whitesmoke;
+    border-radius: 0.5rem;
+    border: 0.1rem solid white;
+    margin: 0.5rem 0 0 auto;
 }
 
+.InjuryDetails{
+    background-color: rgb(59, 59, 59);
+    box-shadow: 0 0.3rem 0.5rem 0.1rem grey;
+    border-radius: 1rem;
+    width: fit-content;    
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.detail{
+    display: flex;
+}
+.detail>label{
+    margin: 0 1rem 0 0;
+}
+.detail>input{
+    height: 1.5rem;
+    background-color: black;
+    box-shadow: inset 0 0.15rem 0.4rem 0rem white;
+    width: 12rem;
+    color-scheme: dark;
+    color: whitesmoke;
+    border-radius: 0.5rem;
+    border: 0.1rem solid white;
+    margin: 0 0 0 auto;
+}
+.InjuryDetails>span{
+    align-self: center;
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.InjuryNote{    
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 .bodies>div{
-    border: 0.2rem solid black;
+    border: 0.2rem solid white;
+
 }
 .bodies>div:nth-of-type(1){
     border-bottom:0.2rem solid transparent; 
@@ -30,13 +109,14 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .body{
-    background-color: cyan;
+    background-color: rgb(2, 156, 156);
     background-image: url("./../../images/humanBody.svg");
     background-size: cover;
     background-position-x:center;
     height: 27rem;
     width: 13rem;
     display: grid;
+    border: 0.1rem solid white;
     grid-template-columns: repeat(13, 1rem);
     grid-template-rows: repeat(27, 1rem);
 }
@@ -48,3 +128,33 @@
     line-height: 1rem;
     font-size: 0.8rem;
 }
+
+/* .saveInjuryButton, .submitButton{
+    border: none;
+    color: white;
+    background-color: rgb(2, 109, 172);
+    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    margin: 0.5rem 0 0 auto;
+    width: fit-content;
+    box-shadow: 0 0.2rem 0.3rem 0.1rem blue;
+} */
+/* .saveInjuryButton:hover, .submitButton:hover{
+    box-shadow: inset 0 0.2rem 0.3rem 0.1rem blue;
+} */
+.submitButton{
+    margin: 1.5rem auto;
+    font-size: 1.2rem;   
+}
+/* 
+.submitButton{
+    width: fit-content;
+    padding: 0.4rem 1rem;
+    margin: 2rem 0 ;
+    font-size: 1.4rem;
+    font-weight: 400;
+    background-color: rgb(2, 109, 172);
+    box-shadow: 0 0.2rem 0.3rem 0.1rem blue;
+} */
+

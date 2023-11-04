@@ -88,18 +88,28 @@ const Home = () => {
         return ( 
             <div className="Home">
                 
-                <div className="NameDateTimeOfInjury">Details Of Injury<br/>
+                <div className="InjuryDetails">
+                    <span>Details Of Injury</span>
+                <div className="detail">
                 <label>Name of the reporter:</label>
                 <input type="text" placeholder="Enter name..." id="nameOfTheReporter" onChange={(e)=>setNameOfTheReporter(e.target.value)}  value={nameOfTheReporter}></input><br/>
+                </div>
+                <div className="detail">
                 <label>Date when the injury occured:</label>
                 <input type="date" placeholder="" id="dateOfInjury" onChange={(e)=>setDateOfInjury(e.target.value)} value={dateOfInjury}></input><br/>
+                </div>
+                <div className="detail">
                 <label>Time when the injury occured:</label>
                 <input type="time" placeholder="" id="TimeofInjury" onChange={(e)=>setTimeOfInjury(e.target.value)} value={timeOfInjury}></input>
+                <br/>
                 </div>
+                <div className="detail">
                 <label>Date when the injury is reported:</label>
                 <input type="date" placeholder="" id="dateOfReport" onChange={(e)=>setDateOfReport(e.target.value)} value={dateOfReport}></input><br/>
+                </div>
+                </div>
                 
-                
+                <div className="InjuryNote">
                 <div className="bodies">
                     <span style={{alignSelf:"center", fontSize:"1rem", fontWeight:"500", marginBottom: "1rem"}}>Please select the area of injury:</span>
     
@@ -126,26 +136,33 @@ const Home = () => {
                     </div>
                 
                 </div>
+                <div style={{display:"flex", flexDirection:"column"}}>
                 <div className="infoAboutInjury">
-                    <span>Injury number {currentlySelectedInjury}</span><br/>
+                    <span>Injury number {currentlySelectedInjury}</span>
+                    <div className="selectDetailsOfInjury">
                     <label>Type of Injury:</label>
                 <select id="typeOfInjury">
                     <option value="infection">Infection</option>
                     <option value="accident">Accident</option>
                     <option value="other">Other</option>
-                    </select><br/>
+                    </select>
+                    </div>
     
+                    <div className="selectDetailsOfInjury">
                     <label>Severity of Injury:</label>
                 <select id="severityOfInjury">
                     <option value="dangerous">Dangerous</option>
                     <option value="moderate">Moderate</option>
                     <option value="firstAid">First-Aid</option>
-                    </select><br/>
-                    <div onClick={()=>handleClickToSaveInjury()}>SAVE</div>
+                    </select>
+                    </div>
+                    <button className="saveInjuryButton" onClick={()=>handleClickToSaveInjury()}>SAVE</button>
     
+                    </div>
+                    <button className="submitButton" onClick={handleSubmit}>SUBMIT</button>
+                    </div>
                 </div>
-            
-                <div style={{background:"red", width: "10rem"}} onClick={handleSubmit}>SuBMit</div>
+                
             </div>
          );
 }

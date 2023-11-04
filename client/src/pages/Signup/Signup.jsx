@@ -24,7 +24,8 @@ const SignUp = () => {
     }
 
     return ( 
-        <div className="signup">
+        
+            <div className="signup">
             <span className="header">SIGN UP</span>
             <form className="signupForm">
                 <div className="forminput">
@@ -48,7 +49,8 @@ const SignUp = () => {
             <button className="FormButton" onClick={handleSubmit}>SignUp</button>
             <br/>
             <span>Already a user?</span><Link to="/login" style={{ textDecoration: 'none', color:"black" }} className="FormButton">Login Here</Link>
-        </div>
+            </div>
+        
      );
 }
  

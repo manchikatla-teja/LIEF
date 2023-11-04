@@ -3,22 +3,20 @@ import SignUp from "./pages/Signup/Signup";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import MainPage from "./pages/MainPage/MainPage";
-import ExistingPatient from "./pages/ExistingPatient/ExistingPatient";
 import UpdatePatient from "./pages/UpdatePatient/UpdatePatient";
 
 function App() {
   return (
-        
         <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<SignUp/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/home' element={<Home/>}></Route>
           <Route path='/mainpage' element={<MainPage/>}></Route>
-          <Route path='/existpatient' element={<ExistingPatient/>}></Route>
           <Route path='/updatepatient' element={<UpdatePatient/>}></Route>
         </Routes>
         </BrowserRouter>
+        
   );
 }
 

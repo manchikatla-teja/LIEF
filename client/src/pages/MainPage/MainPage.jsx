@@ -1,5 +1,6 @@
 import { useNavigate} from "react-router";
 import axios from 'axios'
+import "./MainPage.css"
 import { useEffect, useState } from "react";
 
 const MainPage = () => {
@@ -110,27 +111,31 @@ const MainPage = () => {
 
     return ( 
         <div className="MainPage">
-
-            <label>SEARCH BY NAME:</label>
+            <div className="filterBox">
+            <div className="filter">
+            <span>SEARCH BY NAME:</span>
             <input type="text" placeholder="Enter name to search..." id="searchByName" onChange={(e)=>handleSearchByName(e)}></input><br/>
-            <label>FILTER BY DATES OF INJURY:</label>
+            </div>
+            <div className="filter">
+            <span>FILTER BY DATES OF INJURY:</span><br/>
             <label>START DATE:</label>
-            <input type="date" placeholder="" id="startDateOfInjuryToFilter"></input><br/>
+            <input type="date" placeholder="" id="startDateOfInjuryToFilter"></input>
             <label>END DATE:</label>
             <input type="date" placeholder="" id="endDateOfInjuryToFilter"></input><br/>
             <button onClick={handleClickToFilterByInjuryDates}>FILTER (Injury)</button>
-
-            <br/>
-            <label>FILTER BY DATES OF REPORT:</label>
+            </div>
+            <div className="filter">
+            <span>FILTER BY DATES OF REPORT:</span><br/>
             <label>START DATE:</label>
-            <input type="date" placeholder="" id="startDateOfReportToFilter"></input><br/>
+            <input type="date" placeholder="" id="startDateOfReportToFilter"></input>
             <label>END DATE:</label>
             <input type="date" placeholder="" id="endDateOfReportToFilter"></input><br/>
             <button onClick={handleClickToFilterByReportDates}>FILTER (Report)</button>
-
+            </div>
+            </div>
             <table>
-                <tr>
-                    <td onClick={handleSortByName}> |Name of Reported| </td>
+                <tr className="headingRowInTable">
+                    <td onClick={handleSortByName}>Name of Reported</td>
                     <td onClick={handleSortByDateOfInjury}>Date of Injury</td>
                     <td>Time of Injury</td>
                     <td onClick={handleSortByDateOfReport}>Date of Report</td>
@@ -139,9 +144,9 @@ const MainPage = () => {
                 // data && 
                 data.map((item, key)=>{
                     //console.log(item);
-                    return (<tr id={key}>
+                    return (<tr id={key} className="dataRowInTable">
                         
-                        <td onClick={()=>{navigate('/existpatient', {state:{patient: item}})}}>{item.nameOfTheReporter}</td>
+                        <td>{item.nameOfTheReporter}</td>
                         <td>{item.dateOfInjury}</td>
                         <td>{item.timeOfInjury}</td>
                         <td>{item.dateOfReport}</td>
@@ -153,7 +158,7 @@ const MainPage = () => {
                 })
                 }
             </table>
-            <div onClick={()=>handleClickToAddNewReporter()}>ADD A NEW REPORTER</div>
+            <button onClick={()=>handleClickToAddNewReporter()}>ADD A NEW REPORTER</button>
             
             
         </div>
