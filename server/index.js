@@ -1,6 +1,6 @@
 const constants = {
-    PORTNUMBER: 4000, //for my development purpose
-    //PORTNUMBER: "https://liefpro-server.vercel.app"//for deployment purpose,
+    //PORTNUMBER: 4000, //for my development purpose
+    PORTNUMBER: "https://liefpro-server.vercel.app"//for deployment purpose,
 }
 
 const express = require("express");
