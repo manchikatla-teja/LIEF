@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {React} from 'react';
 import NotLoggedIn from '../NotLoggedIn/NotLoggedIn'
 import {constants} from "../../constants.js"
+import Navbar from "../Navbar/Navbar";
 
 
 let count = 1;
@@ -92,7 +93,7 @@ const Home = () => {
 
     return ( 
             <div className="Home">
-                
+                <Navbar/>
                 <div className="InjuryDetails">
                     <span>Details Of Injury</span>
                 <div className="detail">

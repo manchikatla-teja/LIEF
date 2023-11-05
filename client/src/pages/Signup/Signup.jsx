@@ -4,6 +4,7 @@ import "./Signup.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {constants} from "../../constants.js";
+import Navbar from "../Navbar/Navbar";
 
 const SignUp = () => {
     const [name, setName] = useState("");
@@ -15,7 +16,7 @@ const SignUp = () => {
         e.preventDefault();
         axios.post(constants.CLIENTLINK+"/signup", {name, email, password})
         .then(result=>{
-            console.log(result);
+            //console.log(result);
             setName("");
             setEmail("");
             setPassword("");
@@ -27,6 +28,7 @@ const SignUp = () => {
     return ( 
         
             <div className="signup">
+                <Navbar/>
             <span className="header">SIGN UP</span>
             <form className="signupForm">
                 <div className="forminput">

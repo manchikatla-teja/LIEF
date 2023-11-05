@@ -1,4 +1,5 @@
 import {useNavigate} from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import "./Welcome.css"
 const Welcome = () => {
 
@@ -6,6 +7,7 @@ const Welcome = () => {
 
     return ( 
         <div className="Welcome">
+            <Navbar/>   
             <span className="welcomeTitle">WELCOME TO LIEF PROJECT</span><br/>
             <div style={{display:"flex", flexDirection:"row"}}>
                 <div>

@@ -1,6 +1,6 @@
 const constants = {
-    //PORTNUMBER: 4000, //for my development purpose
-    PORTNUMBER: "https://liefpro-server.vercel.app"//for deployment purpose,
+    PORTNUMBER: 4000, //for my development purpose
+    //PORTNUMBER: "https://liefpro-server.vercel.app"//for deployment purpose,
 }
 
 const express = require("express");
@@ -21,7 +21,8 @@ app.post("/login", (req, res)=>{
     .then(user =>{
         if(user){
             if(user.password ===password){
-                res.json(user.id);
+                const temp = {id: user.id, name: user.name};
+                res.json(temp);
             }
             else{
                 res.json("Invalid password")

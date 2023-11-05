@@ -4,6 +4,7 @@ import "./MainPage.css"
 import { useEffect, useState } from "react";
 import NotLoggedIn from "../NotLoggedIn/NotLoggedIn";
 import {constants} from "../../constants.js"
+import Navbar from "../Navbar/Navbar";
 
 const MainPage = () => {
 
@@ -120,8 +121,9 @@ const MainPage = () => {
 
     
 
-    return ( 
+    return (
         <div className="MainPage">
+        <Navbar/>
             <div className="filterBox">
             <div className="filter">
             <span>SEARCH BY NAME:</span>
@@ -145,6 +147,7 @@ const MainPage = () => {
             </div>
             </div>
             <div style={{margin:"1rem"}}>To sort the data according to their names/dateofinjury/dateofreport , click on the respective tag</div>
+            <button style={{margin:"0.5rem auto 1rem 5rem"}} onClick={()=>handleClickToAddNewReporter()}>ADD A NEW REPORTER</button>
             <table>
                 <tr className="headingRowInTable">
                     <td onClick={handleSortByName} style={{cursor:"pointer"}}>Name of Reported</td>
@@ -170,10 +173,10 @@ const MainPage = () => {
                 })
                 }
             </table>
-            <button onClick={()=>handleClickToAddNewReporter()}>ADD A NEW REPORTER</button>
             
+            </div>
             
-        </div>
+        
      );
 }
  

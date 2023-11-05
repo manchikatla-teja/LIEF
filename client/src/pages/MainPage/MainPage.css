@@ -1,5 +1,10 @@
 .MainPage{
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
 }
 .filterBox{
     background-color: rgb(59, 59, 59);

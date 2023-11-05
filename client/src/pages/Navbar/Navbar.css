@@ -1,0 +1,33 @@
+.Navbar{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    top: 0;
+    position: fixed;
+    width: 97.8%;
+    background: linear-gradient(90deg, rgb(75, 75, 75), rgb(22, 22, 22), rgb(75, 75, 75));
+    box-shadow: 0 0.2rem 0.5rem 0rem white;
+}
+.navbarTitle{
+    font-size: 2.2rem;
+    font-weight: 300;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0rem 0.2rem white;
+    margin: auto;
+}
+.navbarUserName{
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.logoutButton{
+    margin: 0;
+    background-color: rgb(255, 101, 101);
+    box-shadow: 0 0.2rem 0.3rem 0.1rem red;
+}
+.logoutButton:hover{
+    box-shadow: inset 0 0.2rem 0.3rem 0.1rem red;
+}

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "../Home/Home.css"
+import "./UpdatePatient.css"
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import {React} from 'react';
 import NotLoggedIn from "../NotLoggedIn/NotLoggedIn"
 import {constants} from "../../constants.js"
+import Navbar from "../Navbar/Navbar";
 
 const rows  = 27;
 const columns = 13;
@@ -76,6 +78,8 @@ const UpdatePatient = () => {
             document.getElementById("severityOfInjury").value = element.severityOfInjury;
             return;
         }
+        setTypeOfInjury("");
+        setSeverityOfInjury("");
         document.getElementById(index).style.backgroundColor = "rgba(252, 34, 34)";
         document.getElementById(index).innerHTML = count+1;
         setCurrentlySelectedInjury(document.getElementById(index).innerHTML);
@@ -118,7 +122,7 @@ const UpdatePatient = () => {
 
         return ( 
             <div className="Home">
-                
+                <Navbar/>
                 <div className="InjuryDetails"> <span>Details Of Injury</span>
                 <div className="detail">
                 <label>Name of the reporter:</label>
@@ -175,6 +179,9 @@ const UpdatePatient = () => {
                 <div style={{display:"flex", flexDirection:"column"}}>
                 <div className="infoAboutInjury">
                     <span>Injury number {currentlySelectedInjury}</span>
+                    <div>
+                        Prev Type <span className="previousInfoAboutInjury">{typeOfInjury}</span>. You can update below..
+                    </div>
                     <div className="selectDetailsOfInjury">
                     <label>Type of Injury:</label>
                 <select id="typeOfInjury">
@@ -185,7 +192,7 @@ const UpdatePatient = () => {
                     </div>
                 
                 <div>
-                    {typeOfInjury}, {severityOfInjury}
+                Prev Severity <span className="previousInfoAboutInjury">{severityOfInjury}</span>. You can update below..
                 </div>
 
                 <div className="selectDetailsOfInjury">

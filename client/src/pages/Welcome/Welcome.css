@@ -1,14 +1,14 @@
 .Welcome{
-    width: 25rem;
+    width: max-content;
     height: 50%;
-    margin: auto;
+    margin: 10% auto;
     display: flex;
     flex-direction: column;
     color: white;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgb(44, 44, 44), rgb(131, 131, 131), rgb(201, 200, 200));
-    padding: 2rem 1rem 4rem 1rem;
+    padding: 2rem 2.5rem 4rem 2.5rem;
     border-radius: 2rem;
     box-shadow: 0rem 0.4rem 0.5rem 0rem white;
     text-align: center;

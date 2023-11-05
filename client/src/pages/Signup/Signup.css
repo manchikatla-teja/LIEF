@@ -4,7 +4,7 @@
     background: linear-gradient(rgb(44, 44, 44), rgb(131, 131, 131), rgb(201, 200, 200));
     color: white;
     display: flex;
-    margin: 3rem auto;
+    margin: 6rem auto 0rem auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;

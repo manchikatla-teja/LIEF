@@ -3,7 +3,8 @@ import "../Signup/Signup.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import { useState } from "react";
-import {constants} from "../../constants.js"
+import {constants} from "../../constants.js";
+import Navbar from "../Navbar/Navbar";
 
 const Login = () => {
 
@@ -15,7 +16,8 @@ const Login = () => {
         e.preventDefault();
         axios.post(constants.CLIENTLINK+"/login", {email, password})
         .then(result=>{
-            localStorage.setItem('userID', result.data);
+            localStorage.setItem('userID', result.data.id);
+            localStorage.setItem('userName', result.data.name);
             setEmail("");
             setPassword("");
             if(result.data!=="Invalid password" && result.data!=="No such record exists"){
@@ -27,6 +29,7 @@ const Login = () => {
 
     return ( 
         <div className="signup">
+            <Navbar/>
             <span className="header">Login</span>
             <form className="signupForm">
                 <div className="forminput">
