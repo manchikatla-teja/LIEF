@@ -10,6 +10,7 @@ const Navbar = () => {
     const [show, setShow] = useState(false);
 
     const handleClickToLogout = ()=>{
+        setShow(false);
         localStorage.clear();
         navigate('/');
     }
