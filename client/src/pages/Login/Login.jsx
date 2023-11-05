@@ -41,8 +41,8 @@ const Login = () => {
                 </div>
             </form>
             <button className="FormButton" onClick={handleSubmit}>Login</button><br/>
-            <span>Not a user? To create your account</span>
-            <Link to="/signup" style={{ textDecoration: 'none', color:"black" }}className="FormButton">Sign up Here</Link>
+            <span style={{color: 'black', textDecoration:'underline'}}>Not a user? To create your account</span>
+            <Link to="/signup" style={{ textDecoration: 'none', color:"white" }}className="FormButton">Sign up Here</Link>
         </div>
      );
 }

@@ -49,7 +49,7 @@ const SignUp = () => {
             </form>
             <button className="FormButton" onClick={handleSubmit}>SignUp</button>
             <br/>
-            <span>Already a user?</span><Link to="/login" style={{ textDecoration: 'none', color:"black" }} className="FormButton">Login Here</Link>
+            <span style={{color: 'black', textDecoration:'underline'}}>Already a user?</span><Link to="/login" style={{ textDecoration: 'none', color:"white" }} className="FormButton">Login Here</Link>
             </div>
         
      );

@@ -3,6 +3,7 @@ import SignUp from "./pages/Signup/Signup";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import MainPage from "./pages/MainPage/MainPage";
+import Welcome from "./pages/Welcome/Welcome";
 import UpdatePatient from "./pages/UpdatePatient/UpdatePatient";
 import NotLoggedIn from "./pages/NotLoggedIn/NotLoggedIn";
 
@@ -10,6 +11,7 @@ function App() {
   return (
         <BrowserRouter>
         <Routes>
+          <Route path='/' element={<Welcome/>}></Route>
           <Route path='/signup' element={<SignUp/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/home' element={<Home/>}></Route>
