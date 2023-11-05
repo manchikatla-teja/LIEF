@@ -16,7 +16,7 @@ const Navbar = () => {
     }
     useEffect(()=>{
 
-        if(localStorage.getItem('userID')!=null || localStorage.getItem('userID')!=undefined){
+        if(localStorage.getItem('userID')!=null && localStorage.getItem('userID')!=undefined){
             setShow(true);
         }
     },[show]);
