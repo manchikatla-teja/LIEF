@@ -3,7 +3,7 @@ import "./Home.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {React} from 'react';
-
+import NotLoggedIn from '../NotLoggedIn/NotLoggedIn'
 
 
 
@@ -28,10 +28,15 @@ const Home = () => {
     const [currentlySelectedInjury, setCurrentlySelectedInjury] = useState(0);
 
     //console.log(data, currentlySelectedInjury);
+    if(localStorage.getItem('userID')==null || localStorage.getItem('userID')==undefined){
+        return (<NotLoggedIn/>);
+    }
+
+    const userID = localStorage.getItem('userID');
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:4000/injuryPost",{nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
+        await axios.post("http://localhost:4000/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
         .then(result=>{
             //console.log(result);
             //setCurrentlySelectedInjury(0);
@@ -85,7 +90,7 @@ const Home = () => {
 
     }
 
-        return ( 
+    return ( 
             <div className="Home">
                 
                 <div className="InjuryDetails">
@@ -164,7 +169,7 @@ const Home = () => {
                 </div>
                 
             </div>
-         );
+    );
 }
  
 export default Home;

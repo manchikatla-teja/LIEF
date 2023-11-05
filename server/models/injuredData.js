@@ -8,6 +8,7 @@ const injuriesSaved = new mongoose.Schema({
 });
 
 const injuredDataSchema = new mongoose.Schema({
+    userID: String,
     nameOfTheReporter: String,
     dateOfInjury: String,
     timeOfInjury: String,

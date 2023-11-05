@@ -3,7 +3,7 @@ import "../Home/Home.css"
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import {React} from 'react';
-
+import NotLoggedIn from "../NotLoggedIn/NotLoggedIn"
 
 const rows  = 27;
 const columns = 13;
@@ -15,22 +15,29 @@ const UpdatePatient = () => {
     const state = useLocation();
     const data = state.state ? state.state.patient : "";
     //console.log(data);
+    
     const navigate = useNavigate();
     const [nameOfTheReporter, setNameOfTheReporter] = useState(data.nameOfTheReporter);
     const [dateOfInjury, setDateOfInjury] = useState(data.dateOfInjury);
     const [dateOfReport, setDateOfReport] = useState(data.dateOfReport);
     const [timeOfInjury, setTimeOfInjury] = useState(data.timeOfInjury);
     const [currentlySelectedInjury, setCurrentlySelectedInjury] = useState(0);
-    const [count, setCount] = useState(data.injuriesSaved.length);
+    const [count, setCount] = useState(data ? data.injuriesSaved.length:0);
     const [injuredAreas, setInjuredAreas] = useState(data.injuredAreas);
     const [injuriesSaved, setInjuriesSaved] = useState(data.injuriesSaved);
     const [typeOfInjury, setTypeOfInjury] = useState("");
     const [severityOfInjury, setSeverityOfInjury] = useState("");
     //console.log(data, currentlySelectedInjury);
 
+    if(localStorage.getItem('userID')==null || localStorage.getItem('userID')==undefined){
+        return (<NotLoggedIn/>);
+    }
+
+    const userID = localStorage.getItem('userID');
+
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:4000/injuryPost",{nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
+        await axios.post("http://localhost:4000/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
         .then(result=>{
             //console.log(result);
             //setCurrentlySelectedInjury(0);

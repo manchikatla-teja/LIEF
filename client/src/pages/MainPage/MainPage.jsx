@@ -2,30 +2,40 @@ import { useNavigate} from "react-router";
 import axios from 'axios'
 import "./MainPage.css"
 import { useEffect, useState } from "react";
+import NotLoggedIn from "../NotLoggedIn/NotLoggedIn";
 
 const MainPage = () => {
+
+    
 
 
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [test, setTest] = useState(true);
     const [unchangedData, setUnchangedData] = useState([]);
+
+    const userID = localStorage.getItem('userID');
+
     useEffect(()=>{
 
         const fetchCollection = async () => {
             try {
               const response = await axios.get('http://localhost:4000/injuryPost'); // Replace with your API endpoint
-              setData(response.data.reverse());
-              setUnchangedData(response.data.reverse());
+              const temp = response.data.filter((item)=>item.userID===userID);
+              setData(temp.reverse());
+              setUnchangedData(temp.reverse());
             } catch (error) {
               console.error('Error fetching collection:', error);
             }
           };
-
           //console.log("inside USEFEEFECt");
           
         fetchCollection();
     },[]);
+
+    if(localStorage.getItem('userID')==null || localStorage.getItem('userID')==undefined){
+        return (<NotLoggedIn/>);
+    }
 
 
     const handleDeletePatient = async (_id)=>{
@@ -109,6 +119,8 @@ const MainPage = () => {
         setTest(!test);
     }
 
+    
+
     return ( 
         <div className="MainPage">
             <div className="filterBox">
@@ -133,12 +145,13 @@ const MainPage = () => {
             <button onClick={handleClickToFilterByReportDates}>FILTER (Report)</button>
             </div>
             </div>
+            <div style={{margin:"1rem"}}>To sort the data according to their names/dateofinjury/dateofreport , click on the respective tag</div>
             <table>
                 <tr className="headingRowInTable">
-                    <td onClick={handleSortByName}>Name of Reported</td>
-                    <td onClick={handleSortByDateOfInjury}>Date of Injury</td>
+                    <td onClick={handleSortByName} style={{cursor:"pointer"}}>Name of Reported</td>
+                    <td onClick={handleSortByDateOfInjury} style={{cursor:"pointer"}}>Date of Injury</td>
                     <td>Time of Injury</td>
-                    <td onClick={handleSortByDateOfReport}>Date of Report</td>
+                    <td onClick={handleSortByDateOfReport} style={{cursor:"pointer"}}>Date of Report</td>
                 </tr>
                 {
                 // data && 
