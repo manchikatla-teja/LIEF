@@ -4,7 +4,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {React} from 'react';
 import NotLoggedIn from '../NotLoggedIn/NotLoggedIn'
-
+import {constants} from "../../constants.js"
 
 
 let count = 1;
@@ -36,7 +36,7 @@ const Home = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:4000/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
+        await axios.post(constants.CLIENTLINK+"/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
         .then(result=>{
             //console.log(result);
             //setCurrentlySelectedInjury(0);

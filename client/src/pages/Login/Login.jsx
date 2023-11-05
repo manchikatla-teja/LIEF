@@ -3,6 +3,8 @@ import "../Signup/Signup.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import { useState } from "react";
+import {constants} from "../../constants.js"
+
 const Login = () => {
 
     const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:4000/login", {email, password})
+        axios.post(constants.CLIENTLINK+"/login", {email, password})
         .then(result=>{
             localStorage.setItem('userID', result.data);
             setEmail("");

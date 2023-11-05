@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import "./Signup.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {constants} from "../../constants.js";
 
 const SignUp = () => {
     const [name, setName] = useState("");
@@ -12,7 +13,7 @@ const SignUp = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:4000/signup", {name, email, password})
+        axios.post(constants.CLIENTLINK+"/signup", {name, email, password})
         .then(result=>{
             console.log(result);
             setName("");

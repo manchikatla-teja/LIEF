@@ -4,6 +4,7 @@ import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import {React} from 'react';
 import NotLoggedIn from "../NotLoggedIn/NotLoggedIn"
+import {constants} from "../../constants.js"
 
 const rows  = 27;
 const columns = 13;
@@ -37,7 +38,7 @@ const UpdatePatient = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:4000/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
+        await axios.post(constants.CLIENTLINK+"/injuryPost",{userID, nameOfTheReporter,dateOfInjury,timeOfInjury,dateOfReport, injuredAreas, injuriesSaved})
         .then(result=>{
             //console.log(result);
             //setCurrentlySelectedInjury(0);
@@ -48,7 +49,7 @@ const UpdatePatient = () => {
         .catch(err=>console.log(err))
 
         try{
-            await axios.delete(`http://localhost:4000/deletePatient/${data._id}`) //pass data to delete as params
+            await axios.delete(constants.CLIENTLINK+`/deletePatient/${data._id}`) //pass data to delete as params
                                                                              //passing as body was not working
             .then(result=>{
                 //console.log(result);
@@ -132,6 +133,8 @@ const UpdatePatient = () => {
                 <label>Date when the injury is reported:</label>
                 <input type="date" placeholder="" id="dateOfReport" onChange={(e)=>setDateOfReport(e.target.value)} value={dateOfReport}></input><br/></div>
                 </div>
+
+                <div style={{margin: "2rem 2rem -2rem 2rem"}}>To view details about injuries, click on the red spots on bodies. And to add new injury, click on the empty spots</div>
                 
                 <div className="InjuryNote">
                 <div className="bodies">
@@ -166,6 +169,8 @@ const UpdatePatient = () => {
                     </div>
                 
                 </div>
+
+                
 
                 <div style={{display:"flex", flexDirection:"column"}}>
                 <div className="infoAboutInjury">

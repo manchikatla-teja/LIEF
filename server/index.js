@@ -1,3 +1,8 @@
+const constants = {
+    //PORTNUMBER: 4000, //for my development purpose
+    PORTNUMBER: "https://liefpro-server.vercel.app"//for deployment purpose,
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -68,6 +73,6 @@ app.delete('/deletePatient/:_id', async (req, res) => {
 });
   
 
-app.listen(4000, ()=>{
+app.listen(constants.PORTNUMBER, ()=>{ //for dev purpose use portnumber, or use serververcellink
     console.log("server is runnig");
 })

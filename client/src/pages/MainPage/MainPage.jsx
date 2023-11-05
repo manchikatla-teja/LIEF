@@ -3,10 +3,9 @@ import axios from 'axios'
 import "./MainPage.css"
 import { useEffect, useState } from "react";
 import NotLoggedIn from "../NotLoggedIn/NotLoggedIn";
+import {constants} from "../../constants.js"
 
 const MainPage = () => {
-
-    
 
 
     const navigate = useNavigate();
@@ -20,7 +19,7 @@ const MainPage = () => {
 
         const fetchCollection = async () => {
             try {
-              const response = await axios.get('http://localhost:4000/injuryPost'); // Replace with your API endpoint
+              const response = await axios.get(constants.CLIENTLINK+'/injuryPost'); // Replace with your API endpoint
               const temp = response.data.filter((item)=>item.userID===userID);
               setData(temp.reverse());
               setUnchangedData(temp.reverse());
@@ -41,7 +40,7 @@ const MainPage = () => {
     const handleDeletePatient = async (_id)=>{
         //console.log("handleDeletePatienion = ",{_id});
         try{
-            await axios.delete(`http://localhost:4000/deletePatient/${_id}`) //pass data to delete as params
+            await axios.delete(constants.CLIENTLINK+`/deletePatient/${_id}`) //pass data to delete as params
                                                                              //passing as body was not working
             .then(result=>{
                 //console.log(result);
@@ -165,7 +164,7 @@ const MainPage = () => {
                         <td>{item.dateOfReport}</td>
                         <button className="changeInfoOfPatient" onClick={()=>{  
                         navigate('/updatepatient', {state:{patient: item}});
-                    }}>CHANGE INFO</button>
+                    }}>VIEW / UPDATE INFO</button>
                         <button className="deletePatientButton" onClick={()=>handleDeletePatient(item._id)}>DELETE PATIENT</button>
                     </tr>)
                 })
