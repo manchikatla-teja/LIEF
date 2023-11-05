@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="Navbar">
             {show && <button className="logoutButton" onClick={handleClickToLogout}>LOGOUT</button>}
             <span className="navbarTitle">LIEF PROJECT</span>
-            {show && <span className="navbarUserName">Welcome, {localStorage.getItem('userName').toUpperCase()}</span>}
+            {localStorage.getItem('userName')!=null && <span className="navbarUserName">Welcome, {localStorage.getItem('userName').toUpperCase()}</span>}
         </div>
      );
 }
